@@ -1,0 +1,19 @@
+pipeline:
+  docker:
+    image: plugins/docker
+    repo: ilimit/drone-hipchat-py
+    cleanup: false
+    secrets:
+      - docker_username
+      - docker_password
+    tags: 
+      - 'latest'
+      - ${DRONE_COMMIT_SHA}
+
+notify:
+  hipchat:
+    image: ilimit/drone-hipchat-py:${DRONE_COMMIT_SHA}
+    notify: true
+    secrets:
+      - plugin_room
+      - plugin_token
