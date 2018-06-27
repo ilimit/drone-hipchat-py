@@ -1,5 +1,5 @@
 #!/usr/bin/env python 
-import sys, os, json, requests
+import os, json, requests
 
 VARS = [ 
         ('ROOM','ERROR'),
@@ -41,6 +41,8 @@ if __name__ == '__main__':
             )
 
     full_message = title + '<br>' + activity + '<br>' + message
+
+    print os.environ
 
     requests.post(
         '%(URL)s/room/%(ROOM)s/notification?auth_token=%(TOKEN)s'  % CONFIG,
