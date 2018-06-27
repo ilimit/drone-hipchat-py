@@ -16,6 +16,8 @@ for var_name, var_default in VARS:
     CONFIG[var_name]=value
 
 if __name__ == '__main__':
+    print os.environ
+
     color = 'green' if os.environ.get('DRONE_BUILD_STATUS', 'success') else 'red'
     title = '%(DRONE_COMMIT_AUTHOR)s pushed to %(DRONE_REPO)s' % os.environ
     activity = 'Build launched <a href="%(DRONE_BUILD_LINK)s">%(DRONE_REPO)s</a> (%(DRONE_REPO_BRANCH)s)' % os.environ
@@ -41,8 +43,6 @@ if __name__ == '__main__':
             )
 
     full_message = title + '<br>' + activity + '<br>' + message
-
-    print os.environ
 
     requests.post(
         '%(URL)s/room/%(ROOM)s/notification?auth_token=%(TOKEN)s'  % CONFIG,
