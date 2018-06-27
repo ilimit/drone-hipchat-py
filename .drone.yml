@@ -10,7 +10,6 @@ pipeline:
       - 'latest'
       - ${DRONE_COMMIT_SHA}
 
-notify:
   hipchat:
     image: ilimit/drone-hipchat-py:${DRONE_COMMIT_SHA}
     notify: true
